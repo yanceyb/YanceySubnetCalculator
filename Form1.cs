@@ -10,11 +10,25 @@ using System.Windows.Forms;
 
 namespace YanceySubnetCalculator
 {
-    public partial class Form1 : Form
+    public partial class mainForm : Form
     {
-        public Form1()
+        public mainForm()
         {
             InitializeComponent();
+        }
+
+        private void mainForm_Load(object sender, EventArgs e)
+        {
+            maskedTextBox1.ValidatingType = typeof(System.Net.IPAddress);
+        }
+
+        private void maskedTextBox1_TypeValidationCompleted(object sender, TypeValidationEventArgs e)
+        {
+            if (!e.IsValidInput)
+            {
+                toolTip1.ToolTipTitle = "Invalid IP";
+                toolTip1.Show("Not a valid IP.", maskedTextBox1, 0, 0, 5000);
+            }
         }
     }
 }
