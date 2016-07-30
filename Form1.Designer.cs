@@ -36,7 +36,7 @@
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabPageSubnet = new System.Windows.Forms.TabPage();
             this.groupBoxStartingNetwork = new System.Windows.Forms.GroupBox();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.maskedTextBoxNetworkIP = new System.Windows.Forms.MaskedTextBox();
             this.labelNetworkIPAddress = new System.Windows.Forms.Label();
             this.tabPageSupernetting = new System.Windows.Forms.TabPage();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
@@ -100,10 +100,11 @@
             this.tabPageSubnet.Size = new System.Drawing.Size(579, 207);
             this.tabPageSubnet.TabIndex = 0;
             this.tabPageSubnet.Text = "Subnetting";
+            this.tabPageSubnet.Click += new System.EventHandler(this.tabPageSubnet_Click);
             // 
             // groupBoxStartingNetwork
             // 
-            this.groupBoxStartingNetwork.Controls.Add(this.maskedTextBox1);
+            this.groupBoxStartingNetwork.Controls.Add(this.maskedTextBoxNetworkIP);
             this.groupBoxStartingNetwork.Controls.Add(this.labelNetworkIPAddress);
             this.groupBoxStartingNetwork.Location = new System.Drawing.Point(6, 6);
             this.groupBoxStartingNetwork.Name = "groupBoxStartingNetwork";
@@ -112,15 +113,18 @@
             this.groupBoxStartingNetwork.TabStop = false;
             this.groupBoxStartingNetwork.Text = "Starting Network";
             // 
-            // maskedTextBox1
+            // maskedTextBoxNetworkIP
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(19, 39);
-            this.maskedTextBox1.Mask = "000\\.000\\.000\\.000";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.PromptChar = ' ';
-            this.maskedTextBox1.Size = new System.Drawing.Size(100, 20);
-            this.maskedTextBox1.TabIndex = 1;
-            this.maskedTextBox1.TypeValidationCompleted += new System.Windows.Forms.TypeValidationEventHandler(this.maskedTextBox1_TypeValidationCompleted);
+            this.maskedTextBoxNetworkIP.Location = new System.Drawing.Point(19, 39);
+            this.maskedTextBoxNetworkIP.Mask = "000\\.000\\.000\\.000";
+            this.maskedTextBoxNetworkIP.Name = "maskedTextBoxNetworkIP";
+            this.maskedTextBoxNetworkIP.PromptChar = ' ';
+            this.maskedTextBoxNetworkIP.Size = new System.Drawing.Size(100, 20);
+            this.maskedTextBoxNetworkIP.TabIndex = 1;
+            this.maskedTextBoxNetworkIP.TypeValidationCompleted += new System.Windows.Forms.TypeValidationEventHandler(this.maskedTextBoxNetworkIP_TypeValidationCompleted);
+            this.maskedTextBoxNetworkIP.Enter += new System.EventHandler(this.maskedTextBoxNetworkIP_Enter);
+            this.maskedTextBoxNetworkIP.KeyDown += new System.Windows.Forms.KeyEventHandler(this.maskedTextBoxNetworkIP_KeyDown);
+            this.maskedTextBoxNetworkIP.Leave += new System.EventHandler(this.maskedTextBoxNetworkIP_Leave);
             // 
             // labelNetworkIPAddress
             // 
@@ -178,7 +182,7 @@
         private System.Windows.Forms.TabPage tabPageSupernetting;
         private System.Windows.Forms.GroupBox groupBoxStartingNetwork;
         private System.Windows.Forms.Label labelNetworkIPAddress;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.MaskedTextBox maskedTextBoxNetworkIP;
         private System.Windows.Forms.ToolTip toolTip1;
     }
 }
