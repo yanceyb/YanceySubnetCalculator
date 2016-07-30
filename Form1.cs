@@ -34,9 +34,10 @@ namespace YanceySubnetCalculator
         private void maskedTextBoxNetworkIP_Enter(object sender, EventArgs e)
         {
             // Place cursor at the beginning of the textbox when control is selected
-            maskedTextBoxNetworkIP.SelectionStart = 0;
-
-            foreach (Control c in this.Controls) { c.TabStop = false; }
+            this.BeginInvoke((MethodInvoker)delegate ()
+            {
+                maskedTextBoxNetworkIP.Select(0, 0);
+            });
         }
 
         private void maskedTextBoxNetworkIP_Leave(object sender, EventArgs e)
