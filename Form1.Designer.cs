@@ -124,7 +124,9 @@
             this.maskedTextBoxNetworkIP.TypeValidationCompleted += new System.Windows.Forms.TypeValidationEventHandler(this.maskedTextBoxNetworkIP_TypeValidationCompleted);
             this.maskedTextBoxNetworkIP.Enter += new System.EventHandler(this.maskedTextBoxNetworkIP_Enter);
             this.maskedTextBoxNetworkIP.KeyDown += new System.Windows.Forms.KeyEventHandler(this.maskedTextBoxNetworkIP_KeyDown);
+            this.maskedTextBoxNetworkIP.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.maskedTextBoxNetworkIP_KeyPress);
             this.maskedTextBoxNetworkIP.Leave += new System.EventHandler(this.maskedTextBoxNetworkIP_Leave);
+            this.maskedTextBoxNetworkIP.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.maskedTextBoxNetworkIP_PreviewKeyDown);
             // 
             // labelNetworkIPAddress
             // 

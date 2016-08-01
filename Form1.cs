@@ -38,6 +38,9 @@ namespace YanceySubnetCalculator
             {
                 maskedTextBoxNetworkIP.Select(0, 0);
             });
+
+            // Disable the TabStop property so we can cycle through the textbox  
+            foreach (Control c in this.Controls) { c.TabStop = false; }
         }
 
         private void maskedTextBoxNetworkIP_Leave(object sender, EventArgs e)
@@ -50,11 +53,14 @@ namespace YanceySubnetCalculator
 
         private void maskedTextBoxNetworkIP_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Tab)
+            //MessageBox.Show("KeyDown");
+            if (e.KeyCode == Keys.Tab || e.KeyCode == Keys.OemPeriod)
             {
                 int pos = maskedTextBoxNetworkIP.SelectionStart;
                 int max = (maskedTextBoxNetworkIP.MaskedTextProvider.Length - maskedTextBoxNetworkIP.MaskedTextProvider.EditPositionCount);
                 int nextField = 0;
+
+                //MessageBox.Show(pos.ToString() + "" + max.ToString());
 
                 for (int i = 0; i < maskedTextBoxNetworkIP.MaskedTextProvider.Length; i++)
                 {
@@ -74,6 +80,37 @@ namespace YanceySubnetCalculator
         private void tabPageSubnet_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void maskedTextBoxNetworkIP_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //MessageBox.Show("KeyDown");
+        }
+
+        private void maskedTextBoxNetworkIP_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+           // MessageBox.Show("KeyDown");
+            if (e.KeyCode == Keys.Tab)
+            {
+                int pos = maskedTextBoxNetworkIP.SelectionStart;
+                int max = (maskedTextBoxNetworkIP.MaskedTextProvider.Length - maskedTextBoxNetworkIP.MaskedTextProvider.EditPositionCount);
+                int nextField = 0;
+
+                //MessageBox.Show(pos.ToString() + "" + max.ToString());
+
+                for (int i = 0; i < maskedTextBoxNetworkIP.MaskedTextProvider.Length; i++)
+                {
+                    if (!maskedTextBoxNetworkIP.MaskedTextProvider.IsEditPosition(i) && (pos + max) >= i)
+                        nextField = i;
+                }
+                nextField += 1;
+
+                // We're done, enable the TabStop property again  
+                if (pos == nextField)
+                    maskedTextBoxNetworkIP_Leave(this, e);
+
+                maskedTextBoxNetworkIP.SelectionStart = nextField;
+            }
         }
     }
 }
